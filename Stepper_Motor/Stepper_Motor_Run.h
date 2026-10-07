@@ -88,5 +88,8 @@ void Motor_Run_CN4(int32_t step, uint32_t accel, uint32_t decel, uint32_t speed)
 void Motor_Run_CN6(int32_t step, uint32_t accel, uint32_t decel, uint32_t speed);
 void Motor_Run_CN8(int32_t step, uint32_t accel, uint32_t decel, uint32_t speed);
 
+/* 查询指定电机是否仍在梯形运动中。非法编号返回 0。不改变加减速算法。 */
+uint8_t Stepper_IsBusy(StepperMotorId motor_id);
+
 
 #endif

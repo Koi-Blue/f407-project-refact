@@ -66,12 +66,7 @@
 #define PGout(n)   BIT_ADDR(GPIOG_ODR_Addr,n)  //输出 
 #define PGin(n)    BIT_ADDR(GPIOG_IDR_Addr,n)  //输入
 
-//以下为汇编函数
-void WFI_SET(void);		//执行WFI指令
-void INTX_DISABLE(void);//关闭所有中断
-void INTX_ENABLE(void);	//开启所有中断
-void MSR_MSP(uint32_t addr);	//设置堆栈地址
-void Stm32_Clock_Init(uint8_t PLL);
-void JTAG_Set(uint8_t mode);
-void OLED_SHOW(void);
+/* 正点原子例程里的 WFI_SET、INTX_DISABLE、INTX_ENABLE、MSR_MSP、
+ * Stm32_Clock_Init、JTAG_Set、OLED_SHOW 在本仓库无定义、无调用，已删除声明。
+ */
 #endif
