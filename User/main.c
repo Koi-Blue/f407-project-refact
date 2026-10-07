@@ -12,7 +12,16 @@ int main(void)
 		System_Init();
 		Stepper_Motor_Init();
 		USART2_Init(115200);
-		
+
+		/*
+		 * 达妙与舵机初始化当前不调用，避免在没有任务逻辑时改主循环行为。
+		 * 启用达妙前，Keil 的 DM_Motor 组必须包含 DM_Motor_Run.c 与 DM_Motor_Serial.c
+		 * （本工程已编入）。建议在进入 while 之前再调用：
+		 *     DM_Motor_Init();
+		 *     PWM_Init();
+		 * 使能、MIT 指令和舵机角度放到具体任务里，不要在这里直接打开。
+		 * 接口与调用关系见 docs/module-api-inventory.md。
+		 */
 		
 		while (1)
 		{

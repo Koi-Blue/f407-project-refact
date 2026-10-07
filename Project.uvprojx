@@ -919,6 +919,26 @@
               <FileType>1</FileType>
               <FilePath>.\DM_Motor\DM_Motor_Init.c</FilePath>
             </File>
+            <File>
+              <FileName>DM_Motor_Run.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DM_Motor\DM_Motor_Run.c</FilePath>
+            </File>
+            <File>
+              <FileName>DM_Motor_Run.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DM_Motor\DM_Motor_Run.h</FilePath>
+            </File>
+            <File>
+              <FileName>DM_Motor_Serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DM_Motor\DM_Motor_Serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>DM_Motor_Serial.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DM_Motor\DM_Motor_Serial.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

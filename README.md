@@ -45,7 +45,7 @@ f407-project-refact/
 - **User**：`main` 中完成 `System_Init`、步进电机初始化、`USART2`（115200）初始化；主循环预留底盘/电机与协议接收调用。
 - **Car_Move**：场地路径点运动接口（如 `Car_Path01` …）与机构相关逻辑。
 - **Stepper_Motor**：步进电机初始化与运行，以及 `Chassis_Move` 底盘移动。
-- **DM_Motor**：达妙电机相关初始化、运行与串口交互。
+- **DM_Motor**：达妙电机相关初始化、运行与串口交互。启用前必须保证 Keil 工程已编入 `DM_Motor_Run.c` 与 `DM_Motor_Serial.c`（及对应头文件）；当前 `main` 仍未调用 `DM_Motor_Init()` / `PWM_Init()`。模块对外接口见 `docs/module-api-inventory.md`。
 - **Servo**：舵机驱动。
 - **USART**：`USART2` 收发与 `Agreement` 协议层。
 - **System / Start / Library**：板级支持、启动与标准库。

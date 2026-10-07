@@ -2,10 +2,10 @@
 #include "Serial.h"
 #include <stdio.h>
 
-uint8_t Serial_TxPacket[9];
-uint8_t Serial_RxPacket[9];
-uint8_t Serial_RxFlag;
-uint8_t DataLength;
+uint8_t Serial_TxPacket[SERIAL_PACKET_SIZE];
+volatile uint8_t Serial_RxPacket[SERIAL_PACKET_SIZE];
+volatile uint8_t Serial_RxFlag;
+volatile uint8_t DataLength;
 
 int fputc(int ch, FILE *f)
 {
@@ -90,14 +90,32 @@ void USART2_IRQHandler(void)
 		}
 		else if (RxState == 1)
 		{
-			DataLength = RxData;
-			RxState = 2;
-			pRxPacket = 0;
+			/*
+			 * 长度字段来自线路，不能直接当作下标上界。
+			 * 超过缓冲区时钳位并丢弃本帧，避免写穿 Serial_RxPacket，
+			 * 也不要把截断后的 9 字节误当成合法偏移帧。
+			 */
+			if (RxData > SERIAL_PACKET_SIZE)
+			{
+				DataLength = SERIAL_PACKET_SIZE;
+				RxState = 0;
+				pRxPacket = 0;
+				Serial_RxFlag = 0;
+			}
+			else
+			{
+				DataLength = RxData;
+				RxState = 2;
+				pRxPacket = 0;
+			}
 		}
 		else if (RxState == 2)
 		{
-			Serial_RxPacket[pRxPacket] = RxData;
-			pRxPacket++;
+			if (pRxPacket < SERIAL_PACKET_SIZE)
+			{
+				Serial_RxPacket[pRxPacket] = RxData;
+				pRxPacket++;
+			}
 			if (pRxPacket >= DataLength)
 			{
 				RxState = 3;

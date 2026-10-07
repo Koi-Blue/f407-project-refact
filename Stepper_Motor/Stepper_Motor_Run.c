@@ -317,6 +317,17 @@ void Motor_Run_CN8(int32_t step, uint32_t accel, uint32_t decel, uint32_t speed)
     Motor_Run(STEPPER_CN8, step, accel, decel, speed);
 }
 
+uint8_t Stepper_IsBusy(StepperMotorId motor_id)
+{
+    if (motor_id >= STEPPER_MOTOR_COUNT)
+    {
+        return 0;
+    }
+
+    /* busy 由 Motor_Run 置位、定时器中断清零，这里只读。 */
+    return srd[motor_id].busy;
+}
+
 static void Speed_Decision(StepperMotorId motor_id)
 {
     uint32_t new_step_delay = 0;  //下一个脉冲的时间间隔
