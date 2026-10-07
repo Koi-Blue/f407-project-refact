@@ -1,0 +1,42 @@
+# Keil / µVision build outputs
+Objects/
+Listings/
+*.o
+*.d
+*.crf
+*.axf
+*.elf
+*.hex
+*.bin
+*.map
+*.lnp
+*.sct
+*.htm
+*.build_log.htm
+*.dep
+
+# Keil local UI / user-specific
+*.uvguix.*
+*.uvoptx
+*.uvgui.*
+
+# Logs
+*.log
+Build_*.log
+keil_rebuild.log
+
+# Debug / Event Recorder
+DebugConfig/
+EventRecorderStub.scvd
+*.dbgconf
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
